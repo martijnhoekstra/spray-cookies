@@ -14,18 +14,18 @@ object Cookiehandling {
   def withCookies(cookiesource: Option[CookieJar], cookietarget: Option[CookieJar])(innerPipeline: HttpRequest ⇒ Future[HttpResponse])(implicit context: ExecutionContext) = {
     req: HttpRequest ⇒
       {
-        val cookiedreq = addCookies(cookiesource)(req)
+        val cookiedreq = cookiesource.foldLeft(req)((_, jar) ⇒ addCookies(jar)(req))
         val fresp = innerPipeline(cookiedreq)
         fresp.map(res ⇒ {
-          storeCookies(cookietarget, req.uri)(res)
+          cookietarget.foldLeft(res)((_, jar) ⇒ storeCookies(jar, req.uri)(res))
         })
       }
   }
 
-  def addCookies(cookiejar: Option[CookieJar]) = {
+  def addCookies(cookiejar: CookieJar): HttpRequest ⇒ HttpRequest = {
     req: HttpRequest ⇒
       {
-        val cookies = cookiejar.toIterable.flatMap(jar ⇒ jar.cookiesfor(req.uri))
+        val cookies = cookiejar.cookiesfor(req.uri)
         if (cookies.isEmpty) req
         else {
           val cookieheader = Cookie(cookies.toList)
@@ -34,12 +34,12 @@ object Cookiehandling {
       }
   }
 
-  def storeCookies(cookiejar: Option[CookieJar], uri: Uri) = {
+  def storeCookies(cookiejar: CookieJar, uri: Uri): HttpResponse ⇒ HttpResponse = {
     res: HttpResponse ⇒
       {
         val cookieHeaders = res.headers collect { case c: `Set-Cookie` ⇒ c }
         for (c ← cookieHeaders.map(ch ⇒ ch.cookie)) {
-          cookiejar.map(_.setCookie(c, uri))
+          cookiejar.setCookie(c, uri)
         }
         res
       }
