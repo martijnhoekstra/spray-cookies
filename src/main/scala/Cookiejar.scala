@@ -6,6 +6,7 @@ import scala.annotation.tailrec
 import spray.http.DateTime
 import spray.http.HttpCookie
 import spray.http.HttpResponse
+import net.spraycookies.tldlist.EffectiveTldList
 
 class CookieJar(blacklist: EffectiveTldList) {
 

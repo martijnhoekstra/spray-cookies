@@ -10,6 +10,7 @@ object CookiejarSpecification extends Properties("CookieHandling") {
   import spray.http.HttpCookie
   import spray.http.HttpHeaders.`Set-Cookie`
   import spray.http.HttpHeaders.Cookie
+  import net.spraycookies.tldlist.EffectiveTldList
   import scala.concurrent._
   import scala.concurrent.duration._
   import ExecutionContext.Implicits.global
