@@ -72,4 +72,4 @@ To store cookies received from the http response on this pipeline you can use th
 
 ```
 
-[![Build Status](https://travis-ci.org/martijnhoekstra/spray-cookies.png?branch=master)](https://travis-ci.org/martijnhoekstra/spray-cookies)
+[![Build Status](https://travis-ci.org/martijnhoekstra/spray-cookies.svg)](https://travis-ci.org/martijnhoekstra/spray-cookies)
