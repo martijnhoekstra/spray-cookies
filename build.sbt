@@ -25,6 +25,7 @@ scalacOptions ++= Seq(
 
 libraryDependencies ++= Seq(
   "io.spray" % "spray-client" % "1.3.1",
+  "io.spray" %%  "spray-json" % "1.2.6",
   "com.typesafe.akka" %% "akka-actor" % "2.3.0",
   "org.scalacheck" %% "scalacheck" % "1.11.3" % "test"
 )

@@ -1,4 +1,4 @@
-package spray.cookies
+package net.spraycookies
 
 import spray.http.HttpRequest
 import spray.http.HttpResponse
@@ -34,7 +34,7 @@ object Cookiehandling {
       }
   }
 
-  def storeCookies(cookiejar: CookieJar, uri: Uri): HttpResponse ⇒ HttpResponse = {
+  def storeCookies(cookiejar: CookieJar, uri: ⇒ Uri): HttpResponse ⇒ HttpResponse = {
     res: HttpResponse ⇒
       {
         val cookieHeaders = res.headers collect { case c: `Set-Cookie` ⇒ c }

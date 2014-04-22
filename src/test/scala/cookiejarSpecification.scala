@@ -1,4 +1,4 @@
-package spray.cookies
+package net.spraycookies
 
 import org.scalacheck.Properties
 import org.scalacheck.Prop.forAll
@@ -20,7 +20,6 @@ object CookiejarSpecification extends Properties("CookieHandling") {
   }
 
   val genToken = {
-
     val separators = List('(', ')', '<', '>', '@', ',', ';', ':', '\\', '"', '/', '[', ']', '?', '=', '{', '}', ' ', '\t')
     val allowedChars = Range(32, 126).map(_.toChar).toSet -- separators
     val genTokenChar = Gen.oneOf(allowedChars.toSeq)
@@ -29,9 +28,7 @@ object CookiejarSpecification extends Properties("CookieHandling") {
 
   val genCookieValue = {
     val genCookieValueChar = Gen.oneOf(Gen.choose(0x21, 0x21), Gen.choose(0x23, 0x2B), Gen.choose(0x2D, 0x3A), Gen.choose(0x3C, 0x5B), Gen.choose(0x5D, 0x7E)).map(i ⇒ i.toChar)
-    val genUnquotedValue = Gen.containerOf[List, Char](genCookieValueChar).suchThat(_ != Nil).map(_.mkString)
-    Gen.oneOf(genUnquotedValue, genUnquotedValue.map(str ⇒ "\"" + str + "\""))
-    genUnquotedValue
+    Gen.containerOf[List, Char](genCookieValueChar).suchThat(_ != Nil).map(_.mkString)
   }
 
   val genBareCookie = for {
@@ -81,5 +78,4 @@ object CookiejarSpecification extends Properties("CookieHandling") {
       testresult
     }
   }
-
 }

@@ -1,4 +1,4 @@
-package spray.cookies
+package net.spraycookies
 
 import scala.io.Source
 

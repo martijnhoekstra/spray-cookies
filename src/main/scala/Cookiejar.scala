@@ -1,4 +1,4 @@
-package spray.cookies
+package net.spraycookies
 
 import spray.http.HttpHeaders.Host
 import spray.http.Uri

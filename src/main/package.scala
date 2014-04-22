@@ -1,4 +1,4 @@
-package spray.cookies
+package net.spracookies
 
 package object spraycookies  {
 
