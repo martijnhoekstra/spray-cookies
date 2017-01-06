@@ -1,6 +1,12 @@
 spray-cookies
 =============
 
+IMPORTANT: THIS REPO IS ABANDONED
+Please feel free to use it if it's useful to you, but it's three years old now, has not been built against newer scala versions or
+spray releases, and I have no interest in doing so.
+
+I will delete this repo in 2018 (that's in 12 months), so if it's still of use to you, I advice you to fork.
+
 A cookiejar exploration for spray-client
 
 spray-cookies implements a cookiejar that can be plugged in to a spray-client pipeline. The cookiejar itself is mutable so that it remembers the current state
